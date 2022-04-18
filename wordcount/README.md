@@ -25,3 +25,7 @@ env.readTextFile("input/words.txt").var 自动联想返回类型
 3> (hello,3)
 5表示是本地第五个线程，有多少个取决于并行度，默认是cpu核心数，比如我8核，只会出现1到8  
 同一个词会分配到同一个线程中  
+
+## StreamWordCount
+
+nc -lk 7777 保持当前连接，持续监听  
