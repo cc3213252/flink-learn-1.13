@@ -2,7 +2,7 @@
 
 ## 快捷键
 
-psm  创建main函数  
+psvm  创建main函数  
 env.readTextFile("input/words.txt").var 自动联想返回类型
 
 ## fix issue
@@ -14,3 +14,14 @@ env.readTextFile("input/words.txt").var 自动联想返回类型
 
 找不到words.txt  
 默认根路径是父目录，有子module情况下要加module路径  
+
+## 输出
+
+5> (world,1)
+3> (hello,1)
+3> (hello,2)
+2> (java,1)
+7> (flink,1)
+3> (hello,3)
+5表示是本地第五个线程，有多少个取决于并行度，默认是cpu核心数，比如我8核，只会出现1到8  
+同一个词会分配到同一个线程中  
