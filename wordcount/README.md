@@ -15,6 +15,13 @@ env.readTextFile("input/words.txt").var 自动联想返回类型
 找不到words.txt  
 默认根路径是父目录，有子module情况下要加module路径  
 
+提交到flink总报错  
+groupId创建根项目时要倒着写  
+ 
+input无法成功，不知道应该放哪里  
+提交job多次报错，应从日志最后开始看起  
+web ui里面提交参数方法：  --host=host1 --port=7777  
+
 ## 输出
 
 5> (world,1)
@@ -29,3 +36,4 @@ env.readTextFile("input/words.txt").var 自动联想返回类型
 ## StreamWordCount
 
 nc -lk 7777 保持当前连接，持续监听  
+

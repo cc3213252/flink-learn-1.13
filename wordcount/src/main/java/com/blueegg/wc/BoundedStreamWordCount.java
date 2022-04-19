@@ -13,7 +13,7 @@ public class BoundedStreamWordCount {
         // 1. 创建流式执行环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<String> lineDataStreamSource = env.readTextFile("wordcount/input/words.txt");
+        DataStreamSource<String> lineDataStreamSource = env.readTextFile("input/words.txt");
 
         SingleOutputStreamOperator<Tuple2<String, Long>> wordAndOneTuple = lineDataStreamSource.flatMap((String line, Collector<Tuple2<String, Long>> out) -> {
                     String[] words = line.split(" ");

@@ -22,3 +22,9 @@ mvn archetype:generate                               \
 5、在Run/Debug Configuation里面，把Include Dependencies with Provided scope打上勾
 
 6、注意pom中transformers，需要改一个入口类
+
+## 打包测试
+
+mvn clean package  
+在web页面提交tar文件即可测试  
+也可以在右侧maven双击package  
