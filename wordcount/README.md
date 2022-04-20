@@ -37,3 +37,29 @@ web ui里面提交参数方法：  --host=host1 --port=7777
 
 nc -lk 7777 保持当前连接，持续监听  
 
+## 用命令行提交任务
+
+```bash
+scp wordcount-1.0-SNAPSHOT.jar vagrant@host1:/vagrant/tools/flink/
+nc -lk 7777
+cd /vagrant/tools/flink/
+./bin/flink run -m host1:8081 -c com.blueegg.wc.StreamWordCount -p 1 ./wordcount-1.0-SNAPSHOT.jar --host host1 --port 7777
+Job has been submitted with JobID 9416d6d840b104d1ff4b7ffd1ed42db8
+./bin/flink cancel 9416d6d840b104d1ff4b7ffd1ed42db8
+Cancelled job 9416d6d840b104d1ff4b7ffd1ed42db8.
+```
+
+## 命令行查询
+
+查总任务数：  
+./bin/flink list  
+
+查任务历史：  
+./bin/flink list -a  
+
+## word ui
+
+available task slot： 可供使用的资源，提交作业，slot必须要大于0  
+
+## yarn模式下提交
+
