@@ -18,7 +18,7 @@ Application，应用模式，为了节省资源，不用客户端，直接在Job
 ## 独立模式standalone
 
 不使用外部资源管理平台  
-standalone下一般使用会话模式  
+standalone下一般使用会话模式，无法使用单作业，应用模式太复杂    
 
 用应用模式提交作业  
 cp ./wordcount-1.0-SNAPSHOT.jar lib/
