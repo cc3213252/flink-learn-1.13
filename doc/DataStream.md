@@ -8,4 +8,4 @@ bin/flink run -Dexecution.runtime-mode=BATCH
 
 ## 源算子
 
-
+command + n自动生成构造函数  
