@@ -9,3 +9,9 @@ bin/flink run -Dexecution.runtime-mode=BATCH
 ## 源算子
 
 command + n自动生成构造函数  
+
+数组范围内随机的方法： String user = users[random.nextInt(users.length)];  
+
+## 问题
+
+SourceCustomTest会碰到跑几个数据后报错，应用数据源不稳定，网上解答是要设置checkpoint，重试几次都失败才算失败等策略  
