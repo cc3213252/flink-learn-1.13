@@ -30,6 +30,12 @@ filter: 过滤
 flatMap: 一个拆成多个，加强版的map加filter    
 returns(new TypeHint<String>() {}) 用TypeHint可以自动填充最简单  
 
+## 聚合算子
+
+max: 数据会窜  
+maxBy: 会保留完整的一条  
+TransformReduceTest, 归约聚合  
+
 ## 问题
 
 SourceCustomTest会碰到跑几个数据后报错，应用数据源不稳定，网上解答是要设置checkpoint，重试几次都失败才算失败等策略  
