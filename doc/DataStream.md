@@ -10,6 +10,7 @@ bin/flink run -Dexecution.runtime-mode=BATCH
 
 command + n自动生成构造函数  
 双击shift查找  
+ctrl + shift + R 当前文件运行程序  
 
 数组范围内随机的方法： String user = users[random.nextInt(users.length)];  
 
@@ -24,6 +25,10 @@ Flink对POJO类的要求：
 
 ## 转换算子
 
+map: 分别作用每个元素，比如组合成新字段等  
+filter: 过滤  
+flatMap: 一个拆成多个，加强版的map加filter    
+returns(new TypeHint<String>() {}) 用TypeHint可以自动填充最简单  
 
 ## 问题
 
