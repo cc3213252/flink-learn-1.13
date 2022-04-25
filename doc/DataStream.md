@@ -34,7 +34,12 @@ returns(new TypeHint<String>() {}) 用TypeHint可以自动填充最简单
 
 max: 数据会窜  
 maxBy: 会保留完整的一条  
-TransformReduceTest, 归约聚合  
+TransformReduceTest, 归约聚合，reduce 累加    
+
+## 用户自定义函数UDF
+
+rich Function有生命周期概念，open开始，close结束  
+因为他函数不止一个，所以不适合用lamdba实现  
 
 ## 问题
 
