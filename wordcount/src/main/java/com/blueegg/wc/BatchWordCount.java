@@ -26,7 +26,8 @@ public class BatchWordCount {
                         out.collect(Tuple2.of(word, 1L));
                     }
                 })
-                // java8 lambda表达式引入参数会发生范性擦除，故需要加类型声明
+                // java8 lambda表达式引入参数会发生范型擦除，flink只知道是tuple，不知道里面的类型，故需要加类型声明
+                // 不写无法var自动推断
                 .returns(Types.TUPLE(Types.STRING, Types.LONG));
 
         // 4. 按照word进行分组
