@@ -51,6 +51,11 @@ rich Function有生命周期概念，open开始，close结束
 shuffle， 随机分区，均匀分区  
 rebalance, 轮询分区，是默认的    
 rescale，重缩放分区，与轮询的区别是针对组内轮询，建立的连接通道少了，网络效率高了    
+broadcast，广播分区，一对多  
+global，全局分区，并行度没用了，全部都合并到一个分区  
+自定义分区，数据优化时用  
+
+rescale例子说明：source分成两个区，按奇数偶数区分分到不同区  
 
 ## 问题
 
