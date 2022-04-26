@@ -57,6 +57,17 @@ global，全局分区，并行度没用了，全部都合并到一个分区
 
 rescale例子说明：source分成两个区，按奇数偶数区分分到不同区  
 
+## 输出算子
+
+### kafka实验
+
+kafka-console-producer.sh --broker-list localhost:9092 --topic clicks
+kafka-console-consumer.sh --bootstrap-server host1:9092 --topic events  
+启动程序，输入：
+Mary, ./home, 1000
+Alice, ./cart, 2000
+Bob, ./prod?id=100, 3000
+
 ## 问题
 
 SourceCustomTest会碰到跑几个数据后报错，应用数据源不稳定，网上解答是要设置checkpoint，重试几次都失败才算失败等策略  
