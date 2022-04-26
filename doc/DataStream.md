@@ -41,6 +41,17 @@ TransformReduceTest, 归约聚合，reduce 累加
 rich Function有生命周期概念，open开始，close结束  
 因为他函数不止一个，所以不适合用lamdba实现  
 
+数据倾斜的场景：如果按名字keyBy，有的非常忙，有的很闲，资源就分配不均
+如何解决：
+1、对key优化，尽可能分配均匀  
+2、指定物理分区，指定数据到哪个分区  
+
+## 物理分区
+
+shuffle， 随机分区，均匀分区  
+rebalance, 轮询分区，是默认的    
+rescale，重缩放分区，与轮询的区别是针对组内轮询，建立的连接通道少了，网络效率高了    
+
 ## 问题
 
 SourceCustomTest会碰到跑几个数据后报错，应用数据源不稳定，网上解答是要设置checkpoint，重试几次都失败才算失败等策略  
