@@ -68,6 +68,16 @@ Mary, ./home, 1000
 Alice, ./cart, 2000
 Bob, ./prod?id=100, 3000
 
+### redis实验
+
+hgetall clicks  
+
+### mysql实验
+
+CREATE DATABASE IF NOT EXISTS sink_test DEFAULT CHARSET utf8 COLLATE utf8_general_ci;  
+create table clicks(user varchar(20) not null, url varchar(100) not null);  
+
 ## 问题
 
 SourceCustomTest会碰到跑几个数据后报错，应用数据源不稳定，网上解答是要设置checkpoint，重试几次都失败才算失败等策略  
+Redis实验也碰到应用数据不稳定问题，Recovery is suppressed by NoRestartBackoffTimeStrategy  
