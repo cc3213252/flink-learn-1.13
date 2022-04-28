@@ -13,6 +13,7 @@ public class TransformPartitionTest {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
+        env.getConfig().setAutoWatermarkInterval(100);
 
         DataStreamSource<Event> stream = env.fromElements(
                 new Event("Mary", "./home", 1000L),
