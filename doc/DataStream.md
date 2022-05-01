@@ -11,6 +11,7 @@ bin/flink run -Dexecution.runtime-mode=BATCH
 command + n自动生成构造函数  
 双击shift查找  
 ctrl + shift + R 当前文件运行程序  
+当类返回值发生变化，需要重新生成实现方法时，把要重新生成的函数删掉，ctrl + i
 
 数组范围内随机的方法： String user = users[random.nextInt(users.length)];  
 
