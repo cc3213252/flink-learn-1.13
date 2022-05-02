@@ -15,6 +15,7 @@ ctrl + shift + R 当前文件运行程序
 ctrl + o 覆盖方法（重写父类方法）
 command + 7 显示类方法  
 command + 空格快速打开应用  
+ctx.timestamp().sout 快捷生成打印  
 
 数组范围内随机的方法： String user = users[random.nextInt(users.length)];  
 
