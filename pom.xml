@@ -11,4 +11,27 @@
     <modules>
         <module>wordcount</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>gwm-releases</id>
+            <url>https://nexus.gwm.com.cn/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>gwm-snapshots</id>
+            <url>https://nexus.gwm.com.cn/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
