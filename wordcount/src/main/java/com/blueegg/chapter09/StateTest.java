@@ -107,6 +107,8 @@ public class StateTest {
 
             count ++;
             System.out.println("count: " + count);
+
+            myValueState.clear();
         }
     }
 }

@@ -45,7 +45,8 @@ public class TransformReduceTest {
                         return value1.f1 > value2.f1 ? value1 : value2;
                     }
                 });
-        result.print();
+        clicksByUser.print("clicks");
+        result.print("result");
         env.execute();
     }
 }
