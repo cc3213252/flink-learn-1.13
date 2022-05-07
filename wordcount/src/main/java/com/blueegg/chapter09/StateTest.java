@@ -9,6 +9,7 @@ import org.apache.flink.api.common.functions.AggregateFunction;
 import org.apache.flink.api.common.functions.ReduceFunction;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
 import org.apache.flink.api.common.state.*;
+import org.apache.flink.api.common.time.Time;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -84,6 +85,12 @@ public class StateTest {
                             return a + b;
                         }
                     }, Long.class));
+
+            // 配置状态的TTL（生存时间）
+            StateTtlConfig ttlConfig = StateTtlConfig.newBuilder(Time.hours(1))
+                    .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite) // 访问或修改时
+                    .setStateVisibility(StateTtlConfig.StateVisibility.ReturnExpiredIfNotCleanedUp) // 状态可见性，只要没清掉就返回
+                    .build();
 
         }
 
