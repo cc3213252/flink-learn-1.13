@@ -6,10 +6,15 @@ import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.state.ListState;
 import org.apache.flink.api.common.state.ListStateDescriptor;
+import org.apache.flink.contrib.streaming.state.EmbeddedRocksDBStateBackend;
 import org.apache.flink.runtime.state.FunctionInitializationContext;
 import org.apache.flink.runtime.state.FunctionSnapshotContext;
+import org.apache.flink.runtime.state.storage.FileSystemCheckpointStorage;
+import org.apache.flink.runtime.state.storage.JobManagerCheckpointStorage;
+import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.checkpoint.CheckpointedFunction;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
@@ -21,6 +26,21 @@ public class BufferingSinkExample {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
+        env.enableCheckpointing(1000L);
+        env.setStateBackend(new EmbeddedRocksDBStateBackend());
+        // 下面这种jobmanager重启会丢失
+//        env.getCheckpointConfig().setCheckpointStorage(new JobManagerCheckpointStorage()); //配置存储检查点到JobManager堆内存
+
+//        env.getCheckpointConfig().setCheckpointStorage(new FileSystemCheckpointStorage(""));
+
+        CheckpointConfig checkpointConfig = env.getCheckpointConfig();
+        checkpointConfig.setCheckpointTimeout(60000L);
+        checkpointConfig.setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
+        checkpointConfig.setMinPauseBetweenCheckpoints(500L);
+        checkpointConfig.setMaxConcurrentCheckpoints(1); // 最大并发数量
+        checkpointConfig.enableUnalignedCheckpoints();  // 可以减少反压时保存时间
+        checkpointConfig.enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);// 是否开启检查点外部持久化
+        checkpointConfig.setTolerableCheckpointFailureNumber(0); // 完全不允许检查点失败
 
         SingleOutputStreamOperator<Event> stream = env.addSource(new ClickSource())
                 // 乱序流watermark生成
