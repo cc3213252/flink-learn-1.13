@@ -62,15 +62,16 @@ public class CommonApiTest {
         Table clickTable = tableEnv.from("clickTable");
         Table resultTable = clickTable.where($("user_name").isEqual("Bob"))
                 .select($("user_name"), $("url"));
-//        tableEnv.createTemporaryView("result", resultTable);
+
+        tableEnv.createTemporaryView("result2", resultTable);
 
         // 执行sql进行表的查询转换
-//        Table resultTable2 = tableEnv.sqlQuery("select user_name from result");
+        Table resultTable2 = tableEnv.sqlQuery("select url, user_name from result2");
 
         // 创建一张用于输出的表
         String createOutDDL = "CREATE TABLE outTable (" +
-                " url STRING, " +
-                " user_name STRING " +
+                " user_name STRING, " +
+                " url STRING " +
                 ") WITH (" +
                 " 'connector' = 'filesystem', " +
                 " 'path' = 'output'," +
@@ -78,7 +79,16 @@ public class CommonApiTest {
                 ")";
         tableEnv.executeSql(createOutDDL);
 
+        // 创建一张用于控制台打印输出的表
+        String createPrintOutDDL = "CREATE TABLE printOutTable (" +
+                " url STRING, " +
+                " user_name STRING " +
+                ") WITH (" +
+                " 'connector' = 'print'" +
+                ")";
+        tableEnv.executeSql(createPrintOutDDL);
         // 输出表
         resultTable.executeInsert("outTable");
+        resultTable2.executeInsert("printOutTable");
     }
 }
