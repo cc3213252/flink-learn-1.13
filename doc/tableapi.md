@@ -28,3 +28,11 @@ SimpleTableExample， table api和sql两种方式入门，较好
 
 Could not find any format factory for identifier 'csv' in the classpath  
 需要引入flink-csv依赖  
+
+## 表和流转换
+
+表转换成流   tableEnv.toDataStream
+直接转换会报错，用toChangelogStream，例子SimpleTableExample  
+
+仅插入流而已，可以直接用toDataStream  
+对于有聚合操作的，要用toChangelogStream  

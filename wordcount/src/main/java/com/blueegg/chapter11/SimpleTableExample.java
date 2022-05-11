@@ -43,6 +43,12 @@ public class SimpleTableExample {
         // 6. 转换成流打印输出
         tableEnv.toDataStream(resultTable1).print("result1");
         tableEnv.toDataStream(resultTable2).print("result2");
+
+        // 7. 聚合转换
+        tableEnv.createTemporaryView("clickTable", eventTable);  // 把表对象注册到环境里面
+        Table aggResult = tableEnv.sqlQuery("select user, COUNT(url) as cnt from clickTable group by user");
+
+        tableEnv.toChangelogStream(aggResult).print("agg");
         env.execute();
     }
 }
