@@ -36,3 +36,32 @@ Could not find any format factory for identifier 'csv' in the classpath
 
 仅插入流而已，可以直接用toDataStream  
 对于有聚合操作的，要用toChangelogStream  
+
+流转换成表  
+  1. tableEnv.fromDataStream  
+  2. 调用createTemporaryView方法  
+
+动态表转换为流
+
+## 动态查询写法
+
+```sql
+SELECT 
+    user,
+    window_end AS endT,
+    COUNT(url) AS cnt
+FROM TABLE(
+    TUMBLE(
+        TABLE EventTable,
+        DESCRIPTOR(ts), 
+        INTERVAL '1' HOUR))
+GROUP BY user,
+         window_start,
+         window_end
+```
+
+## 流处理中的表
+
+Table API和SQL支持三种编码方式：  
+  1. 仅追加流 Append-only
+  2. 撤回流 Retract
