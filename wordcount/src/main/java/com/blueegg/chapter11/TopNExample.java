@@ -27,11 +27,9 @@ public class TopNExample {
         tableEnv.executeSql(createDDL);
 
         // 普通Top N，选取当前所有用户中浏览量最大的2个
-        Table topNResultTable = tableEnv.sqlQuery("SELECT user, cnt, row_num " +
+        Table topNResultTable = tableEnv.sqlQuery("select user, cnt, row_num " +
                 "from (" +
-                "  select *, ROW_NUMBER() OVER (" +
-                "        order by cnt desc" +
-                ") AS row_num " +
+                "  select *, row_number() over (order by cnt desc) as row_num " +
                 "  from ( select user, count(url) as cnt from clickTable group by user )" +
                 ") where row_num <= 2");
         tableEnv.toChangelogStream(topNResultTable).print("top 2:");

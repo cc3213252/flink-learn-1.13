@@ -103,3 +103,6 @@ tableConfig.setIdleStateRetention(Duration.ofMiniutes(60));
 ### 开窗聚合
 
 可以针对每一行计算一个聚合值
+
+### 应用实例--TopN
+
