@@ -99,3 +99,7 @@ tableConfig.setIdleStateRetention(Duration.ofMiniutes(60));
 ### 窗口聚合
 
 分组聚合窗口用窗口TVF重新实现，相互对比较好实验： TimeAndWindowTest2  
+
+### 开窗聚合
+
+可以针对每一行计算一个聚合值

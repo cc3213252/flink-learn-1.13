@@ -89,12 +89,23 @@ public class TimeAndWindowTest2 {
                 ")" +
                 "GROUP BY user_name, window_end, window_start"
         );
+
+        // 4. 开窗聚合 Over
+        Table overWindowResultTable = tableEnv.sqlQuery("select user_name, " +
+                " avg(ts) OVER(" +
+                "  PARTITION BY user_name " +
+                " ORDER BY et " +
+                " ROWS BETWEEN 3 PRECEDING AND CURRENT ROW" +
+                ") AS avg_ts " +
+                "FROM clickTable"
+        );
 //        clickTable.printSchema();
 //        tableEnv.toChangelogStream(aggTable).print("agg");
 //        tableEnv.toDataStream(groupWindowResultTable).print("group window");
 //        tableEnv.toDataStream(tumbleWindowResultTable).print("tumble window");
-        tableEnv.toDataStream(hopWindowResultTable).print("hop window");
-        tableEnv.toDataStream(cumulateWindowResultTable).print("cumulate window");
+//        tableEnv.toDataStream(hopWindowResultTable).print("hop window");
+//        tableEnv.toDataStream(cumulateWindowResultTable).print("cumulate window");
+        tableEnv.toDataStream(overWindowResultTable).print("over window");
         env.execute();
     }
 }
