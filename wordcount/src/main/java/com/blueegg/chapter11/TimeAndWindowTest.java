@@ -52,8 +52,18 @@ public class TimeAndWindowTest {
         // 1. 分组聚合
         Table aggTable = tableEnv.sqlQuery("select user_name, count(1) from clickTable group by user_name");
 
+        // 2. 分组窗口聚合， 滚动不会造成更新，可以只用toDataStream
+        Table groupWindowResultTable = tableEnv.sqlQuery("select " +
+                " user_name, count(1) as cnt, " +
+                " TUMBLE_END(et, INTERVAL '10' SECOND) AS entT" +
+                " from clickTable " +
+                " group by " +
+                " user_name, " +
+                " TUMBLE(et, INTERVAL '10' SECOND)"
+        );
         clickTable.printSchema();
         tableEnv.toChangelogStream(aggTable).print("agg");
+        tableEnv.toDataStream(groupWindowResultTable).print("group window");
         env.execute();
     }
 }
