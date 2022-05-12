@@ -95,3 +95,7 @@ TableConfig tableConfig = tableEnv.getConfig();
 tableConfig.setIdleStateRetention(Duration.ofMiniutes(60));
 
 流要打印输出，要加env.execute()  
+
+### 窗口聚合
+
+分组聚合窗口用窗口TVF重新实现，相互对比较好实验： TimeAndWindowTest2  
