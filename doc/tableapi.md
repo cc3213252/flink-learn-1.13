@@ -65,3 +65,33 @@ GROUP BY user,
 Table API和SQL支持三种编码方式：  
   1. 仅追加流 Append-only
   2. 撤回流 Retract
+  3. 更新插入流 Upsert，主要看连接器是否支持  
+
+## 时间属性和窗口
+
+proctime 处理时间  
+sql中滑动窗口历史原因叫HOP  
+
+定义一个滚动时间窗口： TUMBLE(ts, INTERVAL '1' HOUR)
+滑动时间窗口： HOP(TABLE EventTable, DESCRIPTOR(ts), INTERVAL '5' MINUTES, INTERVAL '1' HOURS)
+累积窗口： CUMULATE(TABLE EventTable, DESCRIPTOR(ts), INTERVAL '1' HOURS, INTERVAL '1' DAYS)
+
+1、分组窗口，弃用  
+2、窗口表值函数 TVFs，flink提供了四种TVFs：
+  1. 滚动窗口
+  2. 滑动窗口
+  3. 累积窗口
+  4. 会话窗口，尚未完全支持
+
+## 聚合查询
+
+### 分组聚合
+
+内置函数实现，SUM(), MIN(), MAX(), AVG(), COUNT()  
+典型用法： SELECT user, COUNT(url) as cnt FROM EventTable GROUP BY user
+
+为了防止状态无限增长耗尽资源，可以配置状态的生存时间TTL，如：
+TableConfig tableConfig = tableEnv.getConfig();
+tableConfig.setIdleStateRetention(Duration.ofMiniutes(60));
+
+流要打印输出，要加env.execute()  
