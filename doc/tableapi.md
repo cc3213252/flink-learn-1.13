@@ -127,3 +127,30 @@ flink sql系统函数分两类：
   2. 表函数，多行数据  
   3. 聚合函数
   4. 表聚合函数，多行数据  
+
+## SQL客户端
+
+设置流处理模式  
+set 'execution.runtime-mode'='streaming';
+
+设置执行结果模式：  
+set 'sql-client.execution.result-mode'='table'; 
+
+table:表处理模式
+tableau：可视化表模式
+
+## 连接到外部系统
+
+连接es时，必须要定义主键，才能以Upsert模式写数据  
+Flink  SQL提供的连接器： kafka，文件系统，jdbc，es, hbase，hive  
+hive连接器只支持用flink sql  
+
+hive的sql跟标准sql不一样，叫sql的方言dialect，可以直接设置就可使用标准sql：  
+set table.sql-dialect=hive;
+
+或者配置文件sql-cli-defaults.yaml中：  
+configuration:
+  table.sql-dialect: hive
+
+或者代码中：  
+tableEnv.getConfig().setSqlDialect(SqlDialect.HIVE);
