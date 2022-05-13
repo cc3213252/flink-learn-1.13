@@ -106,3 +106,21 @@ tableConfig.setIdleStateRetention(Duration.ofMiniutes(60));
 
 ### 应用实例--TopN
 
+## 联结查询
+
+## 函数（会查资料）
+
+flink sql系统函数分两类：   
+标量函数（Scalar Functions）， 只有数值没有方向  
+  1. 比较函数
+  2. 逻辑函数
+  3. 算术函数
+  4. 字符串函数
+  5. 时间函数
+聚合函数（Aggregate functions）  
+
+自定义函数：  
+  1. 标量函数
+  2. 表函数，多行数据  
+  3. 聚合函数
+  4. 表聚合函数，多行数据  
