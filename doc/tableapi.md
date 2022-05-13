@@ -29,6 +29,9 @@ SimpleTableExample， table api和sql两种方式入门，较好
 Could not find any format factory for identifier 'csv' in the classpath  
 需要引入flink-csv依赖  
 
+Collector引入错误，应引入：
+import org.apache.flink.util.Collector;
+
 ## 表和流转换
 
 表转换成流   tableEnv.toDataStream
