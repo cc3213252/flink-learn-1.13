@@ -84,5 +84,5 @@ create table clicks(user varchar(20) not null, url varchar(100) not null);
 
 ## 问题
 
-SourceCustomTest会碰到跑几个数据后报错，应用数据源不稳定，网上解答是要设置checkpoint，重试几次都失败才算失败等策略  
-Redis实验也碰到应用数据不稳定问题，Recovery is suppressed by NoRestartBackoffTimeStrategy  
+【ok代码问题】SourceCustomTest会碰到跑几个数据后报错，应用数据源不稳定，网上解答是要设置checkpoint，重试几次都失败才算失败等策略  
+【ok】Redis实验也碰到应用数据不稳定问题，Recovery is suppressed by NoRestartBackoffTimeStrategy  
