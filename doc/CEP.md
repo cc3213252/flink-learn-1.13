@@ -57,3 +57,9 @@ skip_past_last_event 跳过所有的子匹配
 ### 处理超时事件
 
 检测订单超时未支付  OrderTimeoutDetectExample
+
+### 处理迟到数据
+
+## CEP的状态机实现
+
+NFAExample，状态机实现连续三次登陆失败检测，注意这个例子是按处理时间来，不能乱序
