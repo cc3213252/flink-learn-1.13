@@ -48,4 +48,12 @@ notFollowedBy() 两个事件之间不会出现某种事件
 
 跳过冗余的匹配  
 skip_to_next 和使用.greedy效果一样  
-skip_past_last_event 跳过所有的子匹配，
+skip_past_last_event 跳过所有的子匹配
+
+## 模式的检测处理
+
+### 将模式应用到流上
+### 处理匹配的事件
+### 处理超时事件
+
+检测订单超时未支付  OrderTimeoutDetectExample
