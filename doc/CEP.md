@@ -47,3 +47,5 @@ notFollowedBy() 两个事件之间不会出现某种事件
 ### 匹配后跳过策略
 
 跳过冗余的匹配  
+skip_to_next 和使用.greedy效果一样  
+skip_past_last_event 跳过所有的子匹配，
